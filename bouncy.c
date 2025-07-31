@@ -2,6 +2,6 @@
 #include <SDL2/SDL.h>
 
 int main() {
-    printf("heloo\n");
-
+    printf("Welcome To Bouncy World\n");
+    SDL_INIT()    
 }
