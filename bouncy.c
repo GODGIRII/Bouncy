@@ -2,5 +2,6 @@
 #include <SDL2/SDL.h>
 
 int main() {
-    printf("heloo/n");
+    printf("heloo\n");
+
 }
