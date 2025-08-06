@@ -3,6 +3,7 @@
 
 #define WIDTH 800
 #define HEIGHT 800
+#define CIRCLE 
 
 int main(int argc, char* argv[]) {
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
@@ -23,7 +24,20 @@ int main(int argc, char* argv[]) {
     SDL_RenderClear(renderer);
     SDL_RenderPresent(renderer); 
 
-    SDL_Delay(3000);
+    bool running = true;
+    SDL_Event event;
+
+    while (running) {
+        while (SDL_PollEvent(&event)) {
+            if (event.type == SDL_EVENT_QUIT) {
+                running = false;
+
+            }
+        }
+
+    SDL_Delay(1);
+
+}
 
     SDL_DestroyWindow(window);
     SDL_Quit();
