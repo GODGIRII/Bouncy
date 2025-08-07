@@ -8,6 +8,38 @@
 #define HEIGHT 800
 
 typedef struct {
+    const char* name;
+    float gravity;  // pixels/sec²
+} Planet;
+
+Planet planets[] = {
+    {"Mercury", 370.0f},
+    {"Venus",   890.0f},
+    {"Earth",   980.0f},
+    {"Moon",    160.0f},
+    {"Mars",    370.0f},
+    {"Jupiter", 2460.0f},
+    {"Saturn",  1080.0f},
+    {"Uranus",   890.0f},
+    {"Neptune", 1100.0f}
+};
+
+int select_planet() {
+    printf("\nSelect a planet:\n");
+    for (int i = 0; i < sizeof(planets)/sizeof(Planet); i++) {
+        printf("%d. %s (gravity: %.0f)\n", i + 1, planets[i].name, planets[i].gravity);
+    }
+    printf("Choice: ");
+    int choice;
+    scanf("%d", &choice);
+    if (choice < 1 || choice > (int)(sizeof(planets)/sizeof(Planet))) {
+        printf("Invalid choice. Defaulting to Earth.\n");
+        return 2; // Earth index
+    }
+    return choice - 1;
+}
+
+typedef struct {
     float x, y;
     float dx, dy;
     int radius;
@@ -15,7 +47,7 @@ typedef struct {
 } Ball;
 
 Ball* create_ball(float x, float y, float dx, float dy, int radius, SDL_Color color) {
-    Ball* b = (Ball*) malloc(sizeof(Ball));
+    Ball* b = malloc(sizeof(Ball));
     if (!b) {
         printf("Memory Allocation Failed\n");
         exit(1);
@@ -61,6 +93,10 @@ void destroy_ball(Ball* b) {
 }
 
 int main(int argc, char* argv[]) {
+    int selected = select_planet();
+    float gravity = planets[selected].gravity;
+    printf("You selected %s. Gravity = %.2f\n", planets[selected].name, gravity);
+
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
         printf("SDL Init failed: %s\n", SDL_GetError());
         return 1;
@@ -75,9 +111,7 @@ int main(int argc, char* argv[]) {
 
     SDL_Renderer* renderer = SDL_CreateRenderer(window, NULL);
     SDL_Color red = {255, 0, 0, 255};
-    Ball* ball = create_ball(400, 100, 100, 0, 20, red);  // starts in air, falling down
-
-    float gravity = 500.0f;
+    Ball* ball = create_ball(400, 100, 100, 0, 20, red);
     uint64_t lastTime = SDL_GetTicks();
 
     bool running = true;
