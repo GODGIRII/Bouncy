@@ -17,19 +17,13 @@ Choose a planet from our solar system and watch how gravity affects the ball’s
 
 ---
 
-## 🚀 Demo
-
-*(Add your own GIF or screenshot here)*
-
----
-
 ## 🛠️ How to Build
 
 ### 🔧 Requirements
 
-- Linux (tested on Arch/Ubuntu)
+- Linux (tested on Arch)
 - SDL3 (installed via your system or from source)
-- `gcc` or any C99 compiler
+- `gcc` compiler
 
 ### 🧪 Compile
 
@@ -114,7 +108,7 @@ Now it will appear in your **app launcher**, and you can launch it by double-cli
 ```
 .
 ├── bouncy.c             # main source code
-├── README.md            # you're reading this
+├── README.md            
 ├── icon.png             # optional: app icon
 └── bouncy.desktop       # optional: desktop entry
 ```
@@ -133,7 +127,7 @@ Now it will appear in your **app launcher**, and you can launch it by double-cli
 
 ## 🧑‍💻 Author
 
-Made with C and coffee by [Your Name](https://github.com/yourusername)
+Made with C and GodGiri
 
 ---
 
